@@ -5,6 +5,10 @@ VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomainModel", "DomainModel\DomainModel.csproj", "{0FE119E2-0E47-432C-9AC1-4065E0F947EB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI", "WebAPI\WebAPI.csproj", "{B6A091B2-27C4-4E09-9D3F-DB77E96AD954}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "ReactUI", "ReactUI\ReactUI.esproj", "{DC5D8749-30E8-4899-894F-17C10B44EB67}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,16 @@ Global
 		{0FE119E2-0E47-432C-9AC1-4065E0F947EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0FE119E2-0E47-432C-9AC1-4065E0F947EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0FE119E2-0E47-432C-9AC1-4065E0F947EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6A091B2-27C4-4E09-9D3F-DB77E96AD954}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6A091B2-27C4-4E09-9D3F-DB77E96AD954}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6A091B2-27C4-4E09-9D3F-DB77E96AD954}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6A091B2-27C4-4E09-9D3F-DB77E96AD954}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC5D8749-30E8-4899-894F-17C10B44EB67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC5D8749-30E8-4899-894F-17C10B44EB67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC5D8749-30E8-4899-894F-17C10B44EB67}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{DC5D8749-30E8-4899-894F-17C10B44EB67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC5D8749-30E8-4899-894F-17C10B44EB67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC5D8749-30E8-4899-894F-17C10B44EB67}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
