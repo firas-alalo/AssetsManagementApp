@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomainModel", "DomainModel\DomainModel.csproj", "{0FE119E2-0E47-432C-9AC1-4065E0F947EB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DomainModel", "DomainModel\DomainModel.csproj", "{0FE119E2-0E47-432C-9AC1-4065E0F947EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI", "WebAPI\WebAPI.csproj", "{B6A091B2-27C4-4E09-9D3F-DB77E96AD954}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessLayer", "DataAccessLayer\DataAccessLayer.csproj", "{D900CFD7-B23A-4A9D-919D-9C0FAA9EB744}"
 EndProject
-Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "ReactUI", "ReactUI\ReactUI.esproj", "{DC5D8749-30E8-4899-894F-17C10B44EB67}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPI", "WebAPI\WebAPI.csproj", "{6601AC3F-4E07-45AC-87A6-46847FA355BB}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "reactui", "ReactUI\reactui.esproj", "{DB06B01B-379B-483C-A558-C0B31FD1A01E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,16 +21,20 @@ Global
 		{0FE119E2-0E47-432C-9AC1-4065E0F947EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0FE119E2-0E47-432C-9AC1-4065E0F947EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0FE119E2-0E47-432C-9AC1-4065E0F947EB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B6A091B2-27C4-4E09-9D3F-DB77E96AD954}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B6A091B2-27C4-4E09-9D3F-DB77E96AD954}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B6A091B2-27C4-4E09-9D3F-DB77E96AD954}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B6A091B2-27C4-4E09-9D3F-DB77E96AD954}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DC5D8749-30E8-4899-894F-17C10B44EB67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DC5D8749-30E8-4899-894F-17C10B44EB67}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DC5D8749-30E8-4899-894F-17C10B44EB67}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{DC5D8749-30E8-4899-894F-17C10B44EB67}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DC5D8749-30E8-4899-894F-17C10B44EB67}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DC5D8749-30E8-4899-894F-17C10B44EB67}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{D900CFD7-B23A-4A9D-919D-9C0FAA9EB744}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D900CFD7-B23A-4A9D-919D-9C0FAA9EB744}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D900CFD7-B23A-4A9D-919D-9C0FAA9EB744}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D900CFD7-B23A-4A9D-919D-9C0FAA9EB744}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6601AC3F-4E07-45AC-87A6-46847FA355BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6601AC3F-4E07-45AC-87A6-46847FA355BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6601AC3F-4E07-45AC-87A6-46847FA355BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6601AC3F-4E07-45AC-87A6-46847FA355BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB06B01B-379B-483C-A558-C0B31FD1A01E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB06B01B-379B-483C-A558-C0B31FD1A01E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB06B01B-379B-483C-A558-C0B31FD1A01E}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{DB06B01B-379B-483C-A558-C0B31FD1A01E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB06B01B-379B-483C-A558-C0B31FD1A01E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB06B01B-379B-483C-A558-C0B31FD1A01E}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
