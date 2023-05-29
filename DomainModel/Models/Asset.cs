@@ -11,8 +11,8 @@ namespace DomainModel.Models
         public decimal Capacity { get; set; }
         public decimal? Location_Longitude { get; set; }
         public decimal? Location_Latitude { get; set; }
-        public DateOnly ContractStart { get; set; }
-        public DateOnly ContractEnd { get; set; }
+        public DateTime ContractStart { get; set; }
+        public DateTime ContractEnd { get; set; }
         public string ApprovedBy { get; set; }
         public DateTime ApprovedAt { get; set; }
         public string ModifiedBy { get; set; }
