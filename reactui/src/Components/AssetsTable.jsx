@@ -70,8 +70,12 @@ function AssetsTable() {
                             <StyledTableCell align="center">{data.assetType}</StyledTableCell>
                             <StyledTableCell align="center">{data.technologyType}</StyledTableCell>
                             <StyledTableCell align="center">{data.capacity}</StyledTableCell>
-                            <StyledTableCell align="center">{data.contractStart}</StyledTableCell>
-                            <StyledTableCell align="center">{data.contractEnd}</StyledTableCell>
+                            <StyledTableCell align="center">
+                                {new Date(data.contractStart).toLocaleDateString('en-GB')}
+                            </StyledTableCell>
+                            <StyledTableCell align="center">
+                                {new Date(data.contractEnd).toLocaleDateString('en-GB')}
+                            </StyledTableCell>
                             <StyledTableCell align="center">{data.currentState}</StyledTableCell>
                             <StyledTableCell align="center"><DropDownButton /></StyledTableCell>
                         </StyledTableRow>
