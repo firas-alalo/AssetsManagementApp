@@ -1,20 +1,25 @@
-import * as React from 'react';
+import React from 'react';
 import Box from '@mui/material/Box';
 import InputAdornment from '@mui/material/InputAdornment';
 import TextField from '@mui/material/TextField';
 
-function CapacityAmount() {
+function CapacityAmount(props) {
+    const { name, label, value, onChange } = props;
 
     return (
         <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
             <div>
                 <TextField
-                    label="Capacity"
+                    label={label}
                     id="outlined-start-adornment"
-                    sx={{ width: '25ch', marginTop:'15px' }}
+                    sx={{ width: '25ch', marginTop: '15px' }}
                     InputProps={{
                         startAdornment: <InputAdornment position="start">MW</InputAdornment>,
                     }}
+                    type="text"
+                    name={name}
+                    value={value}
+                    onChange={onChange}
                 />
             </div>
         </Box>
