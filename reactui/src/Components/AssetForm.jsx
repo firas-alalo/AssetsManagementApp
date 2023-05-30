@@ -4,7 +4,7 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import AssetDropDown from './AssetDropDown';
 import NameTextField from './NameTextField';
-import { StartDatePicker, EndDatePicker } from './DatePicker';
+import MultiDatePicker from './DatePicker';
 import LocationTextField from './LocationTextFields';
 import CapacityAmount from './CapacityAmount';
 import Grid from '@mui/material/Grid';
@@ -13,9 +13,12 @@ import { SaveButton, CancelButton } from './SaveCancelButtons';
 import dayjs from 'dayjs';
 import axios from 'axios';
 import { useState } from 'react';
+import CardActions from '@mui/material/CardActions';
+import { SuccessMessage, FailedMessage } from './ResultMessage';
 
 function AssetForm() {
 
+    const [resultMessage, setResultMessage] = useState("");
     const [asset, setAsset] = useState({
         name: "",
         notes: "",
@@ -39,13 +42,19 @@ function AssetForm() {
 
     const handleSubmit = () => {
 
+        if (asset.contractStart.isAfter(asset.contractStart)) {
+            setResultMessage("warning");
+        }
+
         axios
             .post('https://localhost:7197/Assets/Add', asset)
             .then((response) => {
                 console.log(response);
+                setResultMessage("success");
             })
             .catch((error) => {
                 console.error(error.response);
+                setResultMessage("failed");
             });
     };
 
@@ -100,10 +109,10 @@ function AssetForm() {
 
 
     return (
-        <Card sx={{ maxWidth: "100%", height: "100%", backgroundColor: "white", border: "1px solid gray", p: '20px', marginTop: '5%' }}>
+        <Card sx={{ maxWidth: '800px', height: "100%", backgroundColor: "white", border: "1px solid black", p: '20px', marginTop: '5%' }}>
             <CardContent>
                 <Typography sx={{ fontSize: 25, m: 1, marginBottom: 5 }} align="center" color="black" gutterBottom>
-                    Create a New Asset
+                    Create New Asset
                 </Typography>
                 <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
                     <Grid item xs={8}>
@@ -117,18 +126,24 @@ function AssetForm() {
                         />
 
                         <Grid container spacing={2}>
-                            <Grid item xs={6}>
-                                <StartDatePicker
-                                    contractStart={asset.selectedDate}
+                            <Grid item xs={12}>
+                                <MultiDatePicker
+                                    name="contractStart"
                                     onChange={handleInputChange}
+                                    onDayCountChange={handleInputChange}
+                                    value={asset.contractStart}
+                                    asset={asset}
+                                    setAsset={setAsset}
                                 />
                             </Grid>
-                            <Grid item xs={6}>
-                                <EndDatePicker
-                                    contractEnd={asset.selectedDate}
-                                    onChange={handleInputChange}
-                                />
-                            </Grid>
+                        </Grid>
+                        <Grid item xs={6}>
+                            <NotesTextField
+                                type="text"
+                                name="notes"
+                                value={asset.notes}
+                                onChange={handleInputChange}
+                            />
                         </Grid>
 
                         <LocationTextField
@@ -170,27 +185,27 @@ function AssetForm() {
                         />
                     </Grid>
 
-                    <Grid item xs={6}>
-                        <NotesTextField
-                            type="text"
-                            name="notes"
-                            value={asset.notes}
-                            onChange={handleInputChange}
-                        />
-                    </Grid>
+
                     <Grid item xs={12}>
                         <Grid container spacing={4}>
                             <Grid item>
                                 <CancelButton />
-
                             </Grid>
                             <Grid item>
                                 <SaveButton onSubmit={handleSubmit} />
-
                             </Grid>
                         </Grid>
                     </Grid>
                 </Grid>
+                <CardActions>
+                    {resultMessage === "success" && (
+                        <SuccessMessage />
+                    )}
+                    {resultMessage === "failed" && (
+                        <FailedMessage />
+                    )}
+                </CardActions>
+
             </CardContent>
         </Card>
     );
