@@ -9,46 +9,180 @@ import LocationTextField from './LocationTextFields';
 import CapacityAmount from './CapacityAmount';
 import Grid from '@mui/material/Grid';
 import NotesTextField from './NotesTextField';
-import SaveCancelButtons from './SaveCancelButtons';
+import AddButton from './SaveCancelButtons';
+import dayjs from 'dayjs';
+import axios from 'axios';
+import { useState } from 'react';
 
 function AssetForm() {
+
+    const [asset, setAsset] = useState({
+        name: "",
+        notes: "",
+        capacity: "",
+        location_Longitude: 0,
+        location_Latitude: 0,
+        contractStart: dayjs(),
+        contractEnd: dayjs(),
+        approvedBy: "Lasse",
+        approvedAt: dayjs(),
+        modifiedBy: "None",
+        modifiedAt: "None",
+        counterPart: "",
+        area: "",
+        assetType: "",
+        technologyType: "",
+        currentState: "Draft"
+    });
+
+
+
+    const handleSubmit = () => {
+
+        axios
+            .post('https://localhost:7197/Assets/Add', asset)
+            .then((response) => {
+                console.log(response);
+            })
+            .catch((error) => {
+                console.error(error.response);
+            });
+    };
+
+
+    function handleInputChange(event) {
+        const { name, value } = event.target;
+        console.log(name, value);
+        if (name === 'contractStart') {
+            setAsset((prevState) => ({
+                ...prevState,
+                contractStart: value,
+            }));
+        } else {
+            setAsset((prevState) => ({
+                ...prevState,
+                [name]: value,
+            }));
+        }
+    }
+
+
+    function onSelectChange(event) {
+        console.log(event.target.name, event.target.value);
+        switch (event.target.id) {
+            case "TechType":
+                setAsset((prevState) => ({
+                    ...prevState,
+                    technologyType: event.target.value,
+                }));
+                break;
+            case "Area":
+                setAsset((prevState) => ({
+                    ...prevState,
+                    area: event.target.value,
+                }));
+                break;
+            case "CounterPart":
+                setAsset((prevState) => ({
+                    ...prevState,
+                    counterPart: event.target.value,
+                }));
+                break;
+            case "AssetType":
+                setAsset((prevState) => ({
+                    ...prevState,
+                    assetType: event.target.value,
+                }));
+                break;
+            default:
+        }
+    }
+
+
     return (
         <Card sx={{ maxWidth: "100%", height: "100%", backgroundColor: "white", border: "1px solid gray", p: '20px' }}>
             <CardContent>
-                <Typography sx={{ fontSize: 25, m: 1 }} align="center" color="black" gutterBottom>
-                    {/* A title can be added here */}
+                <Typography sx={{ fontSize: 25, m: 1, marginBottom: 5 }} align="center" color="black" gutterBottom>
+                    Create a New Asset
                 </Typography>
-                <form>
-                    <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-                        <Grid item xs={8}>
-                            <NameTextField />
-                            <StartDatePicker />
-                            <EndDatePicker />
-                            <LocationTextField />
-                            <CapacityAmount />
+                <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+                    <Grid item xs={8}>
+                        <NameTextField
+                            type="text"
+                            name="name"
+                            label="Name"
+                            placeholder="Name of the asset: "
+                            value={asset.name}
+                            onChange={handleInputChange}
+                        />
+
+                        <Grid container spacing={2}>
+                            <Grid item xs={6}>
+                                <StartDatePicker
+                                    contractStart={asset.selectedDate}
+                                    onChange={handleInputChange}
+                                />
+                            </Grid>
+                            <Grid item xs={6}>
+                                <EndDatePicker
+                                    contractEnd={asset.selectedDate}
+                                    onChange={handleInputChange}
+                                />
+                            </Grid>
                         </Grid>
-                        <Grid item xs={4}>
-                            <div style={{ marginTop: '10px' }}>
-                                <AssetDropDown type={"CounterPart"} />
-                                <div style={{ marginTop: '10%' }}>
-                                    <AssetDropDown type={"Area"} />
-                                </div>
-                                <div style={{ marginTop: '10%' }}>
-                                    <AssetDropDown type={"AssetType"} />
-                                </div>
-                                <div style={{ marginTop: '10%' }}>
-                                    <AssetDropDown type={"TechType"} />
-                                </div>
-                            </div>
-                        </Grid>
-                        <Grid item xs={6}>
-                            <NotesTextField />
-                            <SaveCancelButtons />
-                        </Grid>
+
+                        <LocationTextField
+                            value={`${asset.location_Longitude} ${asset.location_Latitude}`}
+                            onChange={handleInputChange}
+                        />
                     </Grid>
-                </form>
+                    <Grid item xs={4}>
+                        <AssetDropDown
+                            key="counterPart"
+                            type={"CounterPart"}
+                            value={asset.counterPart}
+                            onChange={onSelectChange}
+                        />
+                        <AssetDropDown
+                            key="area"
+                            type={"Area"}
+                            value={asset.area}
+                            onChange={onSelectChange}
+                        />
+                        <AssetDropDown
+                            key="assetType"
+                            type={"AssetType"}
+                            value={asset.assetType}
+                            onChange={onSelectChange}
+                        />
+                        <AssetDropDown
+                            key="technologyType"
+                            type={"TechType"}
+                            value={asset.technologyType}
+                            onChange={onSelectChange}
+                        />
+                        <CapacityAmount
+                            type="text"
+                            name="capacity"
+                            label="Capacity"
+                            value={asset.capacity}
+                            onChange={handleInputChange}
+                        />
+                    </Grid>
+
+                    <Grid item xs={6}>
+                        <NotesTextField
+                            type="text"
+                            name="notes"
+                            value={asset.notes}
+                            onChange={handleInputChange}
+                        />
+                        <AddButton onSubmit={handleSubmit} />
+                    </Grid>
+                </Grid>
             </CardContent>
         </Card>
+
     );
 }
 
