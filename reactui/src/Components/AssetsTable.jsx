@@ -62,8 +62,8 @@ function AssetsTable() {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {assets.map((data) => (
-                        <StyledTableRow key={data.id}>
+                    {assets.map((data, index) => (
+                        <StyledTableRow key={index}>
                             <StyledTableCell component="th" scope="row">{data.name}</StyledTableCell>
                             <StyledTableCell align="center">{data.counterPart}</StyledTableCell>
                             <StyledTableCell align="center">{data.area}</StyledTableCell>
