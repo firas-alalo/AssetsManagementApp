@@ -5,23 +5,19 @@ import NativeSelect from '@mui/material/NativeSelect';
 
 const AssetDropDown = (props) => {
     const getOptions = () => {
-        if (props.type === "TechType") {
-            return ["Solar", "Hydro", "Wind"];
+        switch (props.type) {
+            case "TechType":
+                return ["Solar", "Hydro", "Wind"];
+            case "Area":
+                return ["Denmark", "Norway", "Sweden", "Germany", "France", "Spain"];
+            case "CounterPart":
+                return ["Total Energy", "Sunshine Solar"];
+            case "AssetType":
+                return ["Production", "Consumption"];
+            default:
+                return [];
         }
-
-        if (props.type === "Area") {
-            return ["Denmark", "Germany", "Sweden"];
-        }
-
-        if (props.type === "CounterPart") {
-            return ["Total Energy", "Sunshine Solar"];
-        }
-
-        if (props.type === "AssetType") {
-            return ["Production", "Consumption"];
-        }
-
-    }
+    };
 
     return (
         <Box sx={{ minWidth: 120 }}>
@@ -30,12 +26,13 @@ const AssetDropDown = (props) => {
                     {props.type}
                 </InputLabel>
                 <NativeSelect
-                    defaultValue={30}
+                    onChange={props.onChange}
                     inputProps={{
                         name: '',
-                        id: 'uncontrolled-native',
+                        id: props.type,
                     }}
                 >
+                    <option></option>
                     {getOptions().map((option) => (
                         <option key={option} value={option}>{option}</option>
                     ))}
