@@ -9,7 +9,7 @@ import LocationTextField from './LocationTextFields';
 import CapacityAmount from './CapacityAmount';
 import Grid from '@mui/material/Grid';
 import NotesTextField from './NotesTextField';
-import AddButton from './SaveCancelButtons';
+import { SaveButton, CancelButton } from './SaveCancelButtons';
 import dayjs from 'dayjs';
 import axios from 'axios';
 import { useState } from 'react';
@@ -100,7 +100,7 @@ function AssetForm() {
 
 
     return (
-        <Card sx={{ maxWidth: "100%", height: "100%", backgroundColor: "white", border: "1px solid gray", p: '20px' }}>
+        <Card sx={{ maxWidth: "100%", height: "100%", backgroundColor: "white", border: "1px solid gray", p: '20px', marginTop: '5%' }}>
             <CardContent>
                 <Typography sx={{ fontSize: 25, m: 1, marginBottom: 5 }} align="center" color="black" gutterBottom>
                     Create a New Asset
@@ -177,12 +177,22 @@ function AssetForm() {
                             value={asset.notes}
                             onChange={handleInputChange}
                         />
-                        <AddButton onSubmit={handleSubmit} />
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Grid container spacing={4}>
+                            <Grid item>
+                                <CancelButton />
+
+                            </Grid>
+                            <Grid item>
+                                <SaveButton onSubmit={handleSubmit} />
+
+                            </Grid>
+                        </Grid>
                     </Grid>
                 </Grid>
             </CardContent>
         </Card>
-
     );
 }
 
