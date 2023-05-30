@@ -5,7 +5,6 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import Box from '@mui/material/Box';
-import { WarningMessage } from './ResultMessage';
 
 export default function MultiDatePicker({ fromDate, toDate, onChange, onDayCountChange, asset, setAsset }) {
     const [startValue, setStartValue] = React.useState(dayjs());
