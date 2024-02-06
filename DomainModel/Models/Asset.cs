@@ -1,7 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.Data.SqlTypes;
-
-namespace DomainModel.Models
+﻿namespace DomainModel.Models
 {
     public class Asset
     {
@@ -23,15 +20,6 @@ namespace DomainModel.Models
         public string TechnologyType { get; set; }
         public string CurrentState { get; set; }
     }
-
-    //public class testing
-    //{
-    //    public void test()
-    //    {
-    //        Asset firas = new Asset();
-    //        firas.currentState = State.Draft;
-    //    }
-    //}
 }
 
 
