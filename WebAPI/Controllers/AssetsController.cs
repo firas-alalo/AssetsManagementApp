@@ -1,4 +1,6 @@
+using BusinessLogicLayer.Interfaces;
 using DataAccessLayer.DataAccess.Implementations;
+using DataAccessLayer.DataAccess.Interfaces;
 using DomainModel.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -9,19 +11,24 @@ namespace WebAPI.Controllers
 	[Route("[controller]")]
 	public class AssetsController : ControllerBase
 	{
-		AssetDAO _assetDAO = new AssetDAO();
+		IAssetsLogic _assetsLogic;
 
-		[HttpGet]
+        public AssetsController(IAssetsLogic assetsLogic)
+        {
+            _assetsLogic = assetsLogic;
+        }
+
+        [HttpGet]
 		public List<Asset> GetAllAssets()
 		{
-			return _assetDAO.GetAssets();
+			return _assetsLogic.GetAllAssets();
 		}
 
 		[HttpPost]
 		[Route("Add")]
 		public ActionResult CreateAsset(Asset asset)
 		{
-			bool success = _assetDAO.AddAsset(asset);
+			bool success = _assetsLogic.AddAsset(asset);
 			if (!success)
 			{
 				return BadRequest();
