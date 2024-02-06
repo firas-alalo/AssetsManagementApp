@@ -4,9 +4,8 @@
 
 .titles {
     font-size: 3em;
-    text-align: center;
+    text-align: left;
     color: black;
-    margin : 50px;
 }
 
 .App-logo {

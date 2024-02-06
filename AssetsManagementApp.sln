@@ -9,9 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessLayer", "DataAcce
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPI", "WebAPI\WebAPI.csproj", "{6601AC3F-4E07-45AC-87A6-46847FA355BB}"
 EndProject
-Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "reactui", "ReactUI\reactui.esproj", "{DB06B01B-379B-483C-A558-C0B31FD1A01E}"
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "GUI", "ReactUI\GUI.esproj", "{DB06B01B-379B-483C-A558-C0B31FD1A01E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogicLayer", "BusinessLogicLayer\BusinessLogicLayer.csproj", "{20DB8E30-5AFD-4E1C-BFB3-5D972FB29C5C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLogicLayer", "BusinessLogicLayer\BusinessLogicLayer.csproj", "{20DB8E30-5AFD-4E1C-BFB3-5D972FB29C5C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
