@@ -1,3 +1,9 @@
+using BusinessLogicLayer.Implementation;
+using BusinessLogicLayer.Interfaces;
+using DataAccessLayer.DataAccess;
+using DataAccessLayer.DataAccess.Implementations;
+using DataAccessLayer.DataAccess.Interfaces;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -7,9 +13,16 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// Register services in the ASP.NET Core dependency injection container (IServiceCollection)
 if (builder.Environment.IsDevelopment())
 {
-	builder.Services.AddCors(options =>
+    builder.Services.AddDataAccessServices();
+    builder.Services.AddScoped<IAssetsDAO, AssetDAO>();
+    builder.Services.AddScoped<IAssetsLogic, AssetsLogic>();
+
+
+
+    builder.Services.AddCors(options =>
 	{
 
 		options.AddDefaultPolicy(
