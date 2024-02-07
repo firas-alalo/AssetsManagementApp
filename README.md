@@ -6,16 +6,18 @@ Regrettably, these credentials are confidential and not provided within this pub
 
 If you wish to utilize your own database, please note that the settings should be configured within a appsettings.json file located within the API layer.
 
+
 For demonstration purposes, presented below are screenshots showcasing the application pages:
 
 
 Homepage:
 
-![GitHub Logo](reactui/src/Images/HomePageScreenshot.jpg)
+![Homepage screenshot](reactui/src/Images/HomePageScreenshot.jpg)
+
 
 Add Asset page:
 
-![GitHub Logo](reactui/src/Images/AddAssetScreenshot.jpg)
+![Add asset screenshot](reactui/src/Images/AddAssetScreenshot.jpg)
 
 
 
