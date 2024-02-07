@@ -1,15 +1,12 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
-import Fab from '@mui/material/Fab';
-import AddIcon from '@mui/icons-material/Add';
+import Button from '@mui/material/Button';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 
-function AddButton() {
+const AddButton = () => {
     return (
-        <Box sx={{ '& > :not(style)': { m: 1 } }}>
-            <Fab color="primary" aria-label="add">
-                <AddIcon />
-            </Fab>
-        </Box>
+        <Button variant="contained" size="large" startIcon={<CloudUploadIcon />} sx={{ backgroundColor:"green" }} >
+            Add New Asset
+        </Button>
     );
 }
 
