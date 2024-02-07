@@ -1,4 +1,4 @@
-This project is fully operational; however, it will not display the current existing data in the database tables. 
+This project is under development but it's fully operational; however, this public version will not display the current existing data in the database tables. 
 
 This limitation arises from the absence of credentials necessary for establishing database connections, essential for rendering data within the browser. 
 
