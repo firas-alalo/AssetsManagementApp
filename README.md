@@ -4,7 +4,7 @@ This limitation arises from the absence of credentials necessary for establishin
 
 Regrettably, these credentials are confidential and not provided within this public GitHub repository.
 
-If you wish to utilize your own database, please note that the settings should be configured within a appsettings.development.json file located within the API layer.
+If you wish to utilize your own database, please note that the settings should be configured within a appsettings.json file located within the API layer.
 
 
 
