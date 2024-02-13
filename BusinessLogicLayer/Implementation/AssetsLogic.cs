@@ -22,5 +22,10 @@ namespace BusinessLogicLayer.Implementation
         { 
             return assetsDAO.AddAsset(asset);
         }
+
+        public Asset? GetById(int Id)
+        {
+            return assetsDAO?.GetById(Id);
+        }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using DataAccessLayer.DataAccess.Interfaces;
 using DomainModel.Models;
 using Microsoft.Data.SqlClient;
+using System.Data.Common;
+using System.Xml.Linq;
 
 namespace DataAccessLayer.DataAccess.Implementations
 {
@@ -91,6 +93,36 @@ namespace DataAccessLayer.DataAccess.Implementations
                 Console.WriteLine("Failed to insert data.");
             }
             return true;
+        }
+
+        public Asset? GetById(int Id)
+        {
+            SqlConnection conn = _context.CreateConnection();
+
+            conn.Open();
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "SELECT * FROM Assets WHERE Id = @Id";
+            cmd.Parameters.AddWithValue("Id", Id);
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            if (reader.Read())
+            {
+                Asset? assetId = new Asset
+                {
+                    Id = (int)reader["Id"],
+                    Name = (string)reader["Name"],
+                    Capacity = (Decimal)reader["Capacity"],
+                    ContractStart = (DateTime)reader["ContractStart"],
+                    ContractEnd = (DateTime)reader["ContractEnd"],
+                    CounterPart = (string)reader["CounterPart"],
+                    Area = (string)reader["Area"],
+                    AssetType = (string)reader["AssetType"],
+                    TechnologyType = (string)reader["TechnologyType"],
+                    CurrentState = (string)reader["TechnologyType"]
+                };
+                return assetId;
+            }
+            return null;
         }
     }
 }

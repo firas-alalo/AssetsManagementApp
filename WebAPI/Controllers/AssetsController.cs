@@ -1,3 +1,4 @@
+using Azure;
 using BusinessLogicLayer.Interfaces;
 using DataAccessLayer.DataAccess.Implementations;
 using DataAccessLayer.DataAccess.Interfaces;
@@ -35,5 +36,33 @@ namespace WebAPI.Controllers
 			}
 			return Ok(asset);
 		}
-	}
+
+        [HttpGet("{id}")]
+        public ActionResult GetAssetById(int id)
+        {
+            Asset? asset = _assetsLogic.GetById(id);
+            if (asset == null)
+            {
+                return NotFound(); // Change to NotFound instead of BadRequest
+            }
+            return Ok(asset); // Return the retrieved asset object
+        }
+
+
+        //[HttpDelete("{Id}")]
+        //public ActionResult Delete(string barcode)
+        //{
+
+        //    Asset? product = AssetDAO.(barcode);
+        //    if (product == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    _productDao.Delete(product);
+
+        //    response.Headers.Add("DeleteMessage", "Successfully Deleted!!!");
+        //    return Ok(response);
+        //}
+
+    }
 }
