@@ -7,13 +7,13 @@ const AssetDropDown = (props) => {
     const getOptions = () => {
         switch (props.type) {
             case "TechType":
-                return ["Solar", "Hydro", "Wind"];
+                return ["Solar", "Hydro", "Wind", "Petrol", "Electrical"];
             case "Area":
-                return ["Denmark", "Norway", "Sweden", "Germany", "France", "Spain"];
+                return ["Denmark", "Norway", "Sweden", "Germany", "France", "Spain", "Greece", "UK"];
             case "CounterPart":
-                return ["Total Energy", "Sunshine Solar"];
+                return ["Total Energy", "Sunshine Solar", "Special Air", "Light Reaction", "Seven Waves"];
             case "AssetType":
-                return ["Production", "Consumption"];
+                return ["Production", "Consumption", "Trade", "Management"];
             default:
                 return [];
         }
