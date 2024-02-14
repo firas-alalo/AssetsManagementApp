@@ -13,5 +13,7 @@ namespace DataAccessLayer.DataAccess.Interfaces
         bool AddAsset(Asset asset);
 
         public Asset? GetById(int Id);
+
+        public bool DeleteAsset(int Id);
     }
 }

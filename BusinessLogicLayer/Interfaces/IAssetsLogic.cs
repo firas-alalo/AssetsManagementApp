@@ -13,5 +13,7 @@ namespace BusinessLogicLayer.Interfaces
         public bool AddAsset(Asset asset);
 
         public Asset? GetById(int Id);
+
+        public bool DeleteAsset(int Id);
     }
 }

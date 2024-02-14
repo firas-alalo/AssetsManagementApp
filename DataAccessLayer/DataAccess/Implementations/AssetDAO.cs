@@ -1,6 +1,7 @@
 ﻿using DataAccessLayer.DataAccess.Interfaces;
 using DomainModel.Models;
 using Microsoft.Data.SqlClient;
+using System.Data;
 using System.Data.Common;
 using System.Xml.Linq;
 
@@ -29,7 +30,7 @@ namespace DataAccessLayer.DataAccess.Implementations
             {
                 Asset asset = new()
                 {
-                    //Id = reader.GetInt32(0),
+                    Id = reader.GetInt32(0),
                     Name = reader.GetString(1),
                     //Notes = reader.IsDBNull("notes") ? null : reader.GetString(2),
                     Capacity = reader.GetDecimal(3),
@@ -98,7 +99,6 @@ namespace DataAccessLayer.DataAccess.Implementations
         public Asset? GetById(int Id)
         {
             SqlConnection conn = _context.CreateConnection();
-
             conn.Open();
             SqlCommand cmd = conn.CreateCommand();
             cmd.CommandText = "SELECT * FROM Assets WHERE Id = @Id";
@@ -123,6 +123,19 @@ namespace DataAccessLayer.DataAccess.Implementations
                 return assetId;
             }
             return null;
+        }
+
+        public bool DeleteAsset(int Id)
+        {
+            Asset? asset = null;
+            asset = GetById(Id);
+            SqlConnection conn = _context.CreateConnection();
+            conn.Open();
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "DELETE FROM Assets WHERE Id = @Id";
+            cmd.Parameters.AddWithValue("@Id", Id);
+            int rowsAffected = cmd.ExecuteNonQuery();
+            return rowsAffected == 1;
         }
     }
 }
