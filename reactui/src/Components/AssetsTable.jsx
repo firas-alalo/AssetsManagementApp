@@ -7,7 +7,8 @@ import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import DropDownButton from '../Components/DropDownButton';
+import DeleteIcon from '@mui/icons-material/Delete';
+import IconButton from '@mui/material/IconButton';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -32,7 +33,6 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 function AssetsTable() {
     const [assets, setAssets] = useState([]);
 
-
     useEffect(() => {
         axios
             .get('https://localhost:7197/Assets')
@@ -43,6 +43,26 @@ function AssetsTable() {
                 console.error(error);
             });
     }, []);
+
+    const [anchorEl, setAnchorEl] = React.useState(null);
+
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
+    const handleDelete = (id) => {
+        axios.delete(`https://localhost:7197/Assets/Delete?id=${id}`)
+            .then(response => {
+                console.log('Asset deleted successfully');
+                // Optionally, you can update the state to reflect the deletion
+                setAssets(prevAssets => prevAssets.filter(asset => asset.id !== id));
+            })
+            .catch(error => {
+                console.error('Error deleting asset:', error);
+            });
+
+        handleClose();
+    };
 
     return (
         <TableContainer>
@@ -77,7 +97,9 @@ function AssetsTable() {
                                 {new Date(data.contractEnd).toLocaleDateString('en-GB')}
                             </StyledTableCell>
                             <StyledTableCell align="center">{data.currentState}</StyledTableCell>
-                            <StyledTableCell align="center"><DropDownButton /></StyledTableCell>
+                            <StyledTableCell align="center"><IconButton aria-label="delete">
+                                <DeleteIcon onClick={() => handleDelete(data.id)} />
+                            </IconButton></StyledTableCell>
                         </StyledTableRow>
                     ))}
                 </TableBody>

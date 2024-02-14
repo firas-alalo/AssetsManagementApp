@@ -11,5 +11,9 @@ namespace DataAccessLayer.DataAccess.Interfaces
     {
         List<Asset> GetAssets();
         bool AddAsset(Asset asset);
-	}
+
+        public Asset? GetById(int Id);
+
+        public bool DeleteAsset(int Id);
+    }
 }
