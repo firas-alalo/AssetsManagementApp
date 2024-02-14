@@ -104,15 +104,15 @@ export function CancelButton({ onSubmit }) {
                         aria-labelledby="alert-dialog-title"
                         aria-describedby="alert-dialog-description"
                     >
-                        <DialogTitle id="alert-dialog-title">
-                            {"Are you sure you want to cancel the changes?"}
+                        <DialogTitle id="alert-dialog-title" sx={{ height:"1px" }}>
+                            {"Return to home page and disacrd any input?"}
                         </DialogTitle>
                         <DialogContent>
                         </DialogContent>
-                        <DialogActions>
-                            <Button name="buttonNo" onClick={handleClose}>No</Button>
+                        <DialogActions sx={{ gap:"15px" }}>
+                            <Button color="error" variant="outlined" name="buttonNo" onClick={handleClose}>No</Button>
                             <Link to="/">
-                                <Button name="buttonYes" onClick={handleYesClick} autoFocus>
+                                <Button variant="contained" color="success" name="buttonYes" onClick={handleYesClick} autoFocus>
                                     Yes
                                 </Button>
                             </Link>
