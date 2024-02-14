@@ -27,10 +27,10 @@ function AssetForm() {
         location_Latitude: 0,
         contractStart: dayjs(),
         contractEnd: dayjs(),
-        approvedBy: "Lasse",
+        approvedBy: "",
         approvedAt: dayjs(),
-        modifiedBy: "None",
-        modifiedAt: "None",
+        modifiedBy: "",
+        modifiedAt: "",
         counterPart: "",
         area: "",
         assetType: "",
@@ -179,7 +179,7 @@ function AssetForm() {
                         <CapacityAmount
                             type="text"
                             name="capacity"
-                            label="Capacity"
+                            label="Capacity *"
                             value={asset.capacity}
                             onChange={handleInputChange}
                         />
