@@ -48,14 +48,14 @@ export function SaveButton({ onSubmit }) {
                         aria-labelledby="alert-dialog-title"
                         aria-describedby="alert-dialog-description"
                     >
-                        <DialogTitle id="alert-dialog-title">
-                            {"Are you sure you want to save the changes?"}
+                        <DialogTitle id="alert-dialog-title" sx={{ height: "1px" }}>
+                            {"Confirm creating this asset?"}
                         </DialogTitle>
                         <DialogContent>
                         </DialogContent>
-                        <DialogActions>
-                            <Button name="buttonNo" onClick={handleClose}>No</Button>
-                            <Button name="buttonYes" onClick={handleYesClick} autoFocus>Yes</Button>
+                        <DialogActions sx={{ gap: "15px" }}>
+                            <Button color="error" variant="outlined" name="buttonNo" onClick={handleClose}>No</Button>
+                            <Button variant="contained" color="success" name="buttonYes" onClick={handleYesClick} autoFocus>Yes</Button>
                         </DialogActions>
                     </Dialog>
                 </div>
