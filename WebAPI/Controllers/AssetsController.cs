@@ -43,26 +43,25 @@ namespace WebAPI.Controllers
             Asset? asset = _assetsLogic.GetById(id);
             if (asset == null)
             {
-                return NotFound(); // Change to NotFound instead of BadRequest
+                return NotFound();
             }
-            return Ok(asset); // Return the retrieved asset object
+            return Ok(asset);
         }
 
 
-        //[HttpDelete("{Id}")]
-        //public ActionResult Delete(string barcode)
-        //{
+        [HttpDelete("Delete")]
+        public ActionResult Delete(int id)
+        {
+            Asset? asset = _assetsLogic.GetById(id);
+            if (asset == null)
+            {
+                return NotFound();
+            }
+            _assetsLogic.DeleteAsset(id);
 
-        //    Asset? product = AssetDAO.(barcode);
-        //    if (product == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    _productDao.Delete(product);
-
-        //    response.Headers.Add("DeleteMessage", "Successfully Deleted!!!");
-        //    return Ok(response);
-        //}
-
+            var response = new HttpResponseMessage();
+            response.Headers.Add("DeleteMessage", "Successfully Deleted.");
+            return Ok(response);
+        }
     }
 }
