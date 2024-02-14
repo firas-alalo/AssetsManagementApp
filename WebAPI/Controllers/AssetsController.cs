@@ -1,3 +1,4 @@
+using Azure;
 using BusinessLogicLayer.Interfaces;
 using DataAccessLayer.DataAccess.Implementations;
 using DataAccessLayer.DataAccess.Interfaces;
@@ -35,5 +36,32 @@ namespace WebAPI.Controllers
 			}
 			return Ok(asset);
 		}
-	}
+
+        [HttpGet("{id}")]
+        public ActionResult GetAssetById(int id)
+        {
+            Asset? asset = _assetsLogic.GetById(id);
+            if (asset == null)
+            {
+                return NotFound();
+            }
+            return Ok(asset);
+        }
+
+
+        [HttpDelete("Delete")]
+        public ActionResult Delete(int id)
+        {
+            Asset? asset = _assetsLogic.GetById(id);
+            if (asset == null)
+            {
+                return NotFound();
+            }
+            _assetsLogic.DeleteAsset(id);
+
+            var response = new HttpResponseMessage();
+            response.Headers.Add("DeleteMessage", "Successfully Deleted.");
+            return Ok(response);
+        }
+    }
 }
