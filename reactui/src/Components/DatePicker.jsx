@@ -14,6 +14,7 @@ export default function MultiDatePicker({ fromDate, toDate, onChange, onDayCount
     // Call handleDayCountChange with updated startValue and endValue
     React.useEffect(() => {
         handleDayCountChange(startValue, endValue);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [startValue, endValue]);
 
     // Create an array of dates between the start and end dates

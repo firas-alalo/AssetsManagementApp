@@ -44,12 +44,6 @@ function AssetsTable() {
             });
     }, []);
 
-    const [anchorEl, setAnchorEl] = React.useState(null);
-
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
-
     const handleDelete = (id) => {
         axios.delete(`https://localhost:7197/Assets/Delete?id=${id}`)
             .then(response => {
@@ -60,8 +54,6 @@ function AssetsTable() {
             .catch(error => {
                 console.error('Error deleting asset:', error);
             });
-
-        handleClose();
     };
 
     return (
