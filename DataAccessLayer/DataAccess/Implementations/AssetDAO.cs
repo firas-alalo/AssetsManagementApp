@@ -125,6 +125,37 @@ namespace DataAccessLayer.DataAccess.Implementations
             return null;
         }
 
+        public Asset? UpdateAsset(int id, string newName)
+        {
+            try
+            {
+                using (SqlConnection conn = _context.CreateConnection())
+                {
+                    conn.Open();
+
+                    SqlCommand updateCmd = conn.CreateCommand();
+                    updateCmd.CommandText = "UPDATE Assets SET Name = @Name WHERE Id = @Id";
+                    updateCmd.Parameters.AddWithValue("@Name", newName);
+                    updateCmd.Parameters.AddWithValue("@Id", id);
+
+                    int rowsAffected = updateCmd.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        return new Asset { Id = id, Name = newName };
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log or handle the exception appropriately
+                Console.WriteLine("An error occurred: " + ex.Message);
+            }
+
+            return null;
+        }
+
+
         public bool DeleteAsset(int Id)
         {
             Asset? asset = null;
