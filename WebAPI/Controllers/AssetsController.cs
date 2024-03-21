@@ -48,6 +48,17 @@ namespace WebAPI.Controllers
             return Ok(asset);
         }
 
+        [HttpPatch("UpdateAsset/{id}")]
+        public ActionResult UpdateAsset(int id, string newName)
+        {
+            Asset? updatedAsset = _assetsLogic.UpdateAsset(id, newName);
+            if (updatedAsset == null)
+            {
+                return NotFound();
+            }
+            return Ok(updatedAsset);
+        }
+
 
         [HttpDelete("Delete")]
         public ActionResult Delete(int id)
