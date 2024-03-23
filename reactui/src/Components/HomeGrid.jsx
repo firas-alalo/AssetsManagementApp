@@ -6,12 +6,27 @@ import Box from "@mui/material/Box";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import TextField from "@mui/material/TextField";
+import Navbar from "./Navbar";
+import {
+  AssetDeleteException,
+  AssetUpdateException,
+  AssetsFetchException,
+} from "../Exceptions/CRUDExceptions";
 
-function HomeGrid() {
+/**
+ * HomeGrid component
+ * @component
+ *
+ * @description
+ * HomeGrid component is the parent component for the home page.
+ * It contains the SideMenu and AssetsTable components.
+ *
+ * @returns {JSX.Element}
+ */
+const HomeGrid = () => {
   const [isEditWindowOpen, setIsEditWindowOpen] = useState(false);
   const [updatedAsset, setUpdatedAsset] = useState({});
   const [assets, setAssets] = useState([]);
-  const [deletedAsset, setDeletedAsset] = useState([]);
 
   useEffect(() => {
     fetchAssets();
@@ -24,7 +39,7 @@ function HomeGrid() {
         setAssets(response.data);
       })
       .catch((error) => {
-        console.error(error);
+        throw new AssetsFetchException("Error fetching assets");
       });
   };
 
@@ -39,8 +54,8 @@ function HomeGrid() {
       );
       fetchAssets();
       setIsEditWindowOpen(false);
-    } catch (error) {
-      console.error("An error occurred while updating the asset:", error);
+    } catch {
+      throw new AssetUpdateException("Error updating asset");
     }
   };
 
@@ -48,14 +63,10 @@ function HomeGrid() {
     axios
       .delete(`https://localhost:7197/Assets/Delete?id=${id}`)
       .then(() => {
-        console.log("Asset deleted successfully");
-        setDeletedAsset((prevAssets) =>
-          prevAssets.filter((asset) => asset.id !== id)
-        );
         fetchAssets();
       })
       .catch((error) => {
-        console.error("Error deleting asset:", error);
+        throw new AssetDeleteException("Error deleting asset");
       });
   };
 
@@ -78,55 +89,56 @@ function HomeGrid() {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container>
-        <Grid item xs={2} marginTop="4%">
+        <Grid item xs={2}>
           <SideMenu />
         </Grid>
 
-        <Grid item xs={10} marginTop="4%">
-          <AssetsTable
-            data={assets}
-            updateAsset={openEditWindow}
-            updateCallback={onUpdate}
-            fetchAssets={fetchAssets}
-            handleDelete={handleDelete}
-          />
+        <Grid item xs={10}>
+          <Navbar />
+          <Grid marginTop={5}>
+            <AssetsTable
+              data={assets}
+              updateAsset={openEditWindow}
+              updateCallback={onUpdate}
+              fetchAssets={fetchAssets}
+              handleDelete={handleDelete}
+            />
+          </Grid>
           {isEditWindowOpen && (
-            <div className="edit-window">
-              <div className="modal-content">
-                <span className="close" onClick={closeEditWindow}>
-                  &times;
-                </span>
-                <form onSubmit={handleSubmit}>
-                  <h3>Update Asset | ID: {updatedAsset.id}</h3>
-                  <div>
-                    <TextField
-                      sx={{
-                        width: "100%",
-                        marginBottom: "5px",
-                      }}
-                      label="Name"
-                      focused
-                      id="name"
-                      value={updatedAsset.name || ""}
-                      onChange={(e) =>
-                        setUpdatedAsset({
-                          ...updatedAsset,
-                          name: e.target.value,
-                        })
-                      }
-                    />
-                  </div>
-                  <button className="edit-window-update-button" type="submit">
-                    Update
-                  </button>
-                </form>
-              </div>
-            </div>
+            <>
+              <span className="close" onClick={closeEditWindow}>
+                &times;
+              </span>
+              <form onSubmit={handleSubmit}>
+                <h3>Update Asset | ID: {updatedAsset.id}</h3>
+                <div>
+                  <TextField
+                    sx={{
+                      width: "100%",
+                      marginBottom: "5px",
+                    }}
+                    label="Name"
+                    focused
+                    id="name"
+                    value={updatedAsset.name || ""}
+                    onChange={(e) =>
+                      setUpdatedAsset({
+                        ...updatedAsset,
+                        name: e.target.value,
+                      })
+                    }
+                  />
+                </div>
+                <button className="edit-window-update-button" type="submit">
+                  Update
+                </button>
+              </form>
+            </>
           )}
         </Grid>
       </Grid>
     </Box>
   );
-}
+};
 
 export default HomeGrid;
