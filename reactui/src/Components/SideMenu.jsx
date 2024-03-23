@@ -5,34 +5,66 @@ import MenuList from "@mui/material/MenuList";
 import MenuItem from "@mui/material/MenuItem";
 import ListItemText from "@mui/material/ListItemText";
 import ListItemIcon from "@mui/material/ListItemIcon";
-import Typography from "@mui/material/Typography";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import AddIcon from "@mui/icons-material/Add";
 import { Link } from "react-router-dom";
+import AssetFormDialog from "./AssetFormDialog";
+import SettingsIcon from "@mui/icons-material/Settings";
 
+/**
+ * @returns {ReactElement} SideMenu component
+ *
+ * @description This component is a side menu that contains the following:
+ * - Dashboard
+ * - View
+ * - Add
+ */
 const SideMenu = () => {
   return (
-    <Paper sx={{ width: 320, maxWidth: "100%" }}>
+    <Paper
+      sx={{
+        height: "100vh",
+        backgroundColor: "#f5f5f5",
+        border: "1px solid #d3d3d3",
+      }}
+    >
       <MenuList>
-        <Typography
-          sx={{ padding: "10px", marginBottom: "10px", fontWeight: "bold" }}
+        <h2
+          style={{
+            fontWeight: "bold",
+            justifyContent: "center",
+            alignItems: "center",
+            display: "flex",
+            color: "black",
+            marginRight: "20px",
+            marginBottom: "25px",
+            marginTop: "20px",
+          }}
         >
-          Control Panel
-        </Typography>
-        <MenuItem component={Link} to="/">
+          <ListItemIcon
+            sx={{
+              justifyContent: "center",
+            }}
+          >
+            <SettingsIcon />
+          </ListItemIcon>
+          Dashboard
+        </h2>
+
+        <MenuItem component={Link} to="/" sx={{ marginTop: "10px" }}>
           <ListItemIcon>
             <VisibilityIcon />
           </ListItemIcon>
-          <ListItemText>View Assets</ListItemText>
+          <ListItemText>View</ListItemText>
         </MenuItem>
 
         <Divider />
 
-        <MenuItem component={Link} to="/Asset">
+        <MenuItem>
           <ListItemIcon>
             <AddIcon />
           </ListItemIcon>
-          <ListItemText>Add New Asset</ListItemText>
+          <AssetFormDialog />
         </MenuItem>
       </MenuList>
     </Paper>
