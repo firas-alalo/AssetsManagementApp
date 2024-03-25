@@ -125,7 +125,7 @@ namespace DataAccessLayer.DataAccess.Implementations
             return null;
         }
 
-        public Asset? UpdateAsset(int id, string newName, string CounterPart, string Area, string AssetType, string TechnologyType, decimal Capacity)
+        public Asset? UpdateAsset(int id, string newName, string CounterPart, string Area, string AssetType, string TechnologyType, decimal Capacity, DateTime ContractStart, DateTime ContractEnd)
         {
             try
             {
@@ -134,7 +134,7 @@ namespace DataAccessLayer.DataAccess.Implementations
                     conn.Open();
 
                     SqlCommand cmd = conn.CreateCommand();
-                    cmd.CommandText = "UPDATE Assets SET Name = @Name, CounterPart = @CounterPart, Area = @Area, AssetType = @AssetType, TechnologyType = @TechnologyType, Capacity = @Capacity WHERE Id = @Id";
+                    cmd.CommandText = "UPDATE Assets SET Name = @Name, CounterPart = @CounterPart, Area = @Area, AssetType = @AssetType, TechnologyType = @TechnologyType, Capacity = @Capacity, ContractStart = @ContractStart, ContractEnd = @ContractEnd WHERE Id = @Id";
                     cmd.Parameters.AddWithValue("@Id", id);
                     cmd.Parameters.AddWithValue("@Name", newName);
                     cmd.Parameters.AddWithValue("@CounterPart", CounterPart);
@@ -142,12 +142,15 @@ namespace DataAccessLayer.DataAccess.Implementations
                     cmd.Parameters.AddWithValue("AssetType", AssetType);
                     cmd.Parameters.AddWithValue("TechnologyType", TechnologyType);
                     cmd.Parameters.AddWithValue("Capacity", Capacity);
+                    cmd.Parameters.AddWithValue("ContractStart", ContractStart);
+                    cmd.Parameters.AddWithValue("ContractEnd", ContractEnd);
+
 
                     int rowsAffected = cmd.ExecuteNonQuery();
 
                     if (rowsAffected > 0)
                     {
-                        return new Asset { Id = id, Name = newName, CounterPart = CounterPart, Area = Area, AssetType =  AssetType, TechnologyType = TechnologyType, Capacity = Capacity };
+                        return new Asset { Id = id, Name = newName, CounterPart = CounterPart, Area = Area, AssetType =  AssetType, TechnologyType = TechnologyType, Capacity = Capacity, ContractStart = ContractStart, ContractEnd = ContractEnd };
                     }
                 }
             }

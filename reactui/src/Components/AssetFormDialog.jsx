@@ -105,6 +105,7 @@ const AssetFormDialog = () => {
         setInProgress(false);
       });
   };
+
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     if (name === "contractStart") {

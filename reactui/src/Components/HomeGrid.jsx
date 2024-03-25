@@ -8,6 +8,8 @@ import axios from "axios";
 import TextField from "@mui/material/TextField";
 import Navbar from "./Navbar";
 import AssetDropDown from "./AssetDropDown";
+import { StartDate, EndDate } from "./UpdatingDatepicker";
+import dayjs from "dayjs";
 import {
   AssetDeleteException,
   AssetUpdateException,
@@ -61,7 +63,11 @@ const HomeGrid = () => {
           updatedAsset.assetType
         )}&TechnologyType=${encodeURIComponent(
           updatedAsset.technologyType
-        )}&Capacity=${encodeURIComponent(updatedAsset.capacity)}`
+        )}&Capacity=${encodeURIComponent(
+          updatedAsset.capacity
+        )}&ContractStart=${encodeURIComponent(
+          updatedAsset.contractStart
+        )}&ContractEnd=${encodeURIComponent(updatedAsset.contractEnd)}`
       );
       fetchAssets();
       setIsEditWindowOpen(false);
@@ -188,6 +194,25 @@ const HomeGrid = () => {
                       })
                     }
                   />
+                  <StartDate
+                    value={dayjs(updatedAsset.contractStart)}
+                    onChange={(date) =>
+                      setUpdatedAsset((prevAsset) => ({
+                        ...prevAsset,
+                        contractStart: date.add(1, "day"),
+                      }))
+                    }
+                  />
+                  <EndDate
+                    value={dayjs(updatedAsset.contractEnd)}
+                    onChange={(date) =>
+                      setUpdatedAsset((prevAsset) => ({
+                        ...prevAsset,
+                        contractEnd: date.add(1, "day"),
+                      }))
+                    }
+                  />
+
                   <TextField
                     sx={{
                       width: "100%",
