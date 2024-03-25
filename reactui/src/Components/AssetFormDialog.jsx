@@ -88,7 +88,6 @@ const AssetFormDialog = () => {
     axios
       .post("https://localhost:7197/Assets/Add", asset)
       .then((response) => {
-        console.log(response);
         setResultMessage({
           show: true,
           message: "Asset created successfully",
@@ -108,7 +107,6 @@ const AssetFormDialog = () => {
   };
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    console.log(name, value);
     if (name === "contractStart") {
       setAsset((prevState) => ({
         ...prevState,
@@ -123,7 +121,6 @@ const AssetFormDialog = () => {
   };
 
   const onSelectChange = (event) => {
-    console.log(event.target.name, event.target.value);
     switch (event.target.id) {
       case "TechType":
         setAsset((prevState) => ({

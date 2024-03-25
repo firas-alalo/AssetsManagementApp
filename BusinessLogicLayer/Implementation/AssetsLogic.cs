@@ -28,9 +28,9 @@ namespace BusinessLogicLayer.Implementation
             return assetsDAO?.GetById(Id);
         }
 
-        public Asset? UpdateAsset(int id, string newName)
+        public Asset? UpdateAsset(int id, string newName, string CounterPart, string Area, string AssetType, string TechnologyType, decimal Capacity)
         {
-            return assetsDAO?.UpdateAsset(id, newName);
+            return assetsDAO?.UpdateAsset(id, newName, CounterPart, Area, AssetType, TechnologyType, Capacity);
         }
 
         public bool DeleteAsset(int Id)

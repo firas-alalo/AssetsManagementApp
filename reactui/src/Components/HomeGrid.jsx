@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import TextField from "@mui/material/TextField";
 import Navbar from "./Navbar";
+import AssetDropDown from "./AssetDropDown";
 import {
   AssetDeleteException,
   AssetUpdateException,
@@ -50,7 +51,17 @@ const HomeGrid = () => {
       await axios.patch(
         `https://localhost:7197/Assets/UpdateAsset/${
           updatedAsset.id
-        }?newName=${encodeURIComponent(updatedAsset.name)}`
+        }?newName=${encodeURIComponent(
+          updatedAsset.name
+        )}&CounterPart=${encodeURIComponent(
+          updatedAsset.counterPart
+        )}&Area=${encodeURIComponent(
+          updatedAsset.area
+        )}&AssetType=${encodeURIComponent(
+          updatedAsset.assetType
+        )}&TechnologyType=${encodeURIComponent(
+          updatedAsset.technologyType
+        )}&Capacity=${encodeURIComponent(updatedAsset.capacity)}`
       );
       fetchAssets();
       setIsEditWindowOpen(false);
@@ -72,7 +83,11 @@ const HomeGrid = () => {
 
   const openEditWindow = (asset) => {
     if (isEditWindowOpen) return;
-    setUpdatedAsset(asset);
+    console.log(asset);
+    setUpdatedAsset({
+      ...asset,
+      counterPart: asset.counterPart,
+    });
     setIsEditWindowOpen(true);
   };
 
@@ -105,11 +120,11 @@ const HomeGrid = () => {
             />
           </Grid>
           {isEditWindowOpen && (
-            <>
-              <span className="close" onClick={closeEditWindow}>
-                &times;
-              </span>
-              <form onSubmit={handleSubmit}>
+            <div className="edit-window">
+              <form onSubmit={handleSubmit} className="modal-content">
+                <span className="close" onClick={closeEditWindow}>
+                  &times;
+                </span>
                 <h3>Update Asset | ID: {updatedAsset.id}</h3>
                 <div>
                   <TextField
@@ -128,12 +143,73 @@ const HomeGrid = () => {
                       })
                     }
                   />
+                  <AssetDropDown
+                    id="counterPart"
+                    key="counterPart"
+                    type={"CounterPart"}
+                    value={updatedAsset.counterPart}
+                    onChange={(e) =>
+                      setUpdatedAsset({
+                        ...updatedAsset,
+                        counterPart: e.target.value,
+                      })
+                    }
+                  />
+                  <AssetDropDown
+                    key="area"
+                    type={"Area"}
+                    value={updatedAsset.area}
+                    onChange={(e) =>
+                      setUpdatedAsset({
+                        ...updatedAsset,
+                        area: e.target.value,
+                      })
+                    }
+                  />
+                  <AssetDropDown
+                    key="assetType"
+                    type={"AssetType"}
+                    value={updatedAsset.assetType}
+                    onChange={(e) =>
+                      setUpdatedAsset({
+                        ...updatedAsset,
+                        assetType: e.target.value,
+                      })
+                    }
+                  />
+                  <AssetDropDown
+                    key="technologyType"
+                    type={"TechType"}
+                    value={updatedAsset.technologyType}
+                    onChange={(e) =>
+                      setUpdatedAsset({
+                        ...updatedAsset,
+                        technologyType: e.target.value,
+                      })
+                    }
+                  />
+                  <TextField
+                    sx={{
+                      width: "100%",
+                      marginTop: "15px",
+                    }}
+                    label="capacity"
+                    focused
+                    id="capacity"
+                    value={updatedAsset.capacity || ""}
+                    onChange={(e) =>
+                      setUpdatedAsset({
+                        ...updatedAsset,
+                        capacity: e.target.value,
+                      })
+                    }
+                  />
                 </div>
                 <button className="edit-window-update-button" type="submit">
                   Update
                 </button>
               </form>
-            </>
+            </div>
           )}
         </Grid>
       </Grid>

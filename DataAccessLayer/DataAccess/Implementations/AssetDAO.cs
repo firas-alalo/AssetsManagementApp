@@ -125,7 +125,7 @@ namespace DataAccessLayer.DataAccess.Implementations
             return null;
         }
 
-        public Asset? UpdateAsset(int id, string newName)
+        public Asset? UpdateAsset(int id, string newName, string CounterPart, string Area, string AssetType, string TechnologyType, decimal Capacity)
         {
             try
             {
@@ -133,22 +133,26 @@ namespace DataAccessLayer.DataAccess.Implementations
                 {
                     conn.Open();
 
-                    SqlCommand updateCmd = conn.CreateCommand();
-                    updateCmd.CommandText = "UPDATE Assets SET Name = @Name WHERE Id = @Id";
-                    updateCmd.Parameters.AddWithValue("@Name", newName);
-                    updateCmd.Parameters.AddWithValue("@Id", id);
+                    SqlCommand cmd = conn.CreateCommand();
+                    cmd.CommandText = "UPDATE Assets SET Name = @Name, CounterPart = @CounterPart, Area = @Area, AssetType = @AssetType, TechnologyType = @TechnologyType, Capacity = @Capacity WHERE Id = @Id";
+                    cmd.Parameters.AddWithValue("@Id", id);
+                    cmd.Parameters.AddWithValue("@Name", newName);
+                    cmd.Parameters.AddWithValue("@CounterPart", CounterPart);
+                    cmd.Parameters.AddWithValue("Area", Area);
+                    cmd.Parameters.AddWithValue("AssetType", AssetType);
+                    cmd.Parameters.AddWithValue("TechnologyType", TechnologyType);
+                    cmd.Parameters.AddWithValue("Capacity", Capacity);
 
-                    int rowsAffected = updateCmd.ExecuteNonQuery();
+                    int rowsAffected = cmd.ExecuteNonQuery();
 
                     if (rowsAffected > 0)
                     {
-                        return new Asset { Id = id, Name = newName };
+                        return new Asset { Id = id, Name = newName, CounterPart = CounterPart, Area = Area, AssetType =  AssetType, TechnologyType = TechnologyType, Capacity = Capacity };
                     }
                 }
             }
             catch (Exception ex)
             {
-                // Log or handle the exception appropriately
                 Console.WriteLine("An error occurred: " + ex.Message);
             }
 
