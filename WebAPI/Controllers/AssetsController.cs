@@ -49,9 +49,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPatch("UpdateAsset/{id}")]
-        public ActionResult UpdateAsset(int id, string newName, string CounterPart, string Area, string AssetType, string TechnologyType, decimal Capacity)
+        public ActionResult UpdateAsset(int id, string newName, string CounterPart, string Area, string AssetType, string TechnologyType, decimal Capacity, DateTime ContractStart, DateTime ContractEnd)
         {
-            Asset? updatedAsset = _assetsLogic.UpdateAsset(id, newName, CounterPart, Area, AssetType, TechnologyType, Capacity);
+            Asset? updatedAsset = _assetsLogic.UpdateAsset(id, newName, CounterPart, Area, AssetType, TechnologyType, Capacity, ContractStart, ContractEnd);
             if (updatedAsset == null)
             {
                 return NotFound();
