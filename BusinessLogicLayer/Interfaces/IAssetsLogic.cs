@@ -14,7 +14,7 @@ namespace BusinessLogicLayer.Interfaces
 
         public Asset? GetById(int Id);
 
-        public Asset? UpdateAsset(int id, string newName);
+        public Asset? UpdateAsset(int id, string newName, string CounterPart, string Area, string AssetType, string TechnologyType, decimal Capacity);
 
         public bool DeleteAsset(int Id);
     }
