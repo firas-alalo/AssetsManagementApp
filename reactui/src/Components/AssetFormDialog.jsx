@@ -21,12 +21,14 @@ import dayjs from "dayjs";
 import ResultMessage from "./ResultMessage";
 import ListItemText from "@mui/material/ListItemText";
 import ProgressSpinner from "./ProgressSpinner";
+import CountriesList from "./CountriesList";
 
 /**
  * AssetFormDialog component
- * @returns {ReactElement}
+ * @component
  *
- * @description This component is used to create a new asset from dialog box and submit the form data to the server.
+ * @description
+ * AssetFormDialog component is a dialog that allows the user to create a new asset.
  */
 const AssetFormDialog = () => {
   const [open, setOpen] = React.useState(false);
@@ -153,6 +155,7 @@ const AssetFormDialog = () => {
 
   return (
     <>
+      {/* the problem of letter A is because it is located after this ListItemText componnt */}
       <ListItemText onClick={handleClickOpen}>Add</ListItemText>
       <Dialog
         fullScreen={fullScreen}
@@ -208,6 +211,8 @@ const AssetFormDialog = () => {
                       name="notes"
                       value={asset.notes}
                       onChange={handleInputChange}
+                      label="Notes"
+                      placeholder="Notes about the asset"
                     />
                   </Grid>
 
@@ -223,7 +228,7 @@ const AssetFormDialog = () => {
                     value={asset.counterPart}
                     onChange={onSelectChange}
                   />
-                  <AssetDropDown
+                  <CountriesList
                     key="area"
                     type={"Area"}
                     value={asset.area}
