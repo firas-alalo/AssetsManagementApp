@@ -1,8 +1,7 @@
-﻿import * as React from "react";
+﻿import React from "react";
 import Divider from "@mui/material/Divider";
 import Paper from "@mui/material/Paper";
 import MenuList from "@mui/material/MenuList";
-import MenuItem from "@mui/material/MenuItem";
 import ListItemText from "@mui/material/ListItemText";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import VisibilityIcon from "@mui/icons-material/Visibility";
@@ -10,6 +9,7 @@ import AddIcon from "@mui/icons-material/Add";
 import { Link } from "react-router-dom";
 import AssetFormDialog from "./AssetFormDialog";
 import SettingsIcon from "@mui/icons-material/Settings";
+import ListItem from "@mui/material/ListItem";
 
 /**
  * @returns {ReactElement} SideMenu component
@@ -51,21 +51,21 @@ const SideMenu = () => {
           Dashboard
         </h2>
 
-        <MenuItem component={Link} to="/" sx={{ marginTop: "10px" }}>
+        <ListItem component={Link} to="/" sx={{ marginTop: "10px" }}>
           <ListItemIcon>
             <VisibilityIcon />
           </ListItemIcon>
           <ListItemText>View</ListItemText>
-        </MenuItem>
+        </ListItem>
 
         <Divider />
 
-        <MenuItem>
+        <ListItem style={{ cursor: "pointer" }}>
           <ListItemIcon>
             <AddIcon />
           </ListItemIcon>
           <AssetFormDialog />
-        </MenuItem>
+        </ListItem>
       </MenuList>
     </Paper>
   );
