@@ -2,10 +2,10 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "type": "edge",
+      "type": "chrome",
       "request": "launch",
-      "name": "localhost (Edge)",
-      "url": "http://localhost:3000",
+      "name": "localhost (Chrome)",
+      "url": "http://localhost:3000/login",
       "webRoot": "${workspaceFolder}"
     },
     {
