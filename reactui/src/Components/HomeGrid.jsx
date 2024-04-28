@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import TextField from "@mui/material/TextField";
 import Navbar from "./Navbar";
+import CountriesList from "./CountriesList";
 import AssetDropDown from "./AssetDropDown";
 import { StartDate, EndDate } from "./UpdatingDatepicker";
 import dayjs from "dayjs";
@@ -161,7 +162,7 @@ const HomeGrid = () => {
                       })
                     }
                   />
-                  <AssetDropDown
+                  <CountriesList
                     key="area"
                     type={"Area"}
                     value={updatedAsset.area}
@@ -172,6 +173,7 @@ const HomeGrid = () => {
                       })
                     }
                   />
+
                   <AssetDropDown
                     key="assetType"
                     type={"AssetType"}
