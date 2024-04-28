@@ -8,17 +8,6 @@ const AssetDropDown = (props) => {
     switch (props.type) {
       case "TechType":
         return ["Solar", "Hydro", "Wind", "Petrol", "Electrical"];
-      case "Area":
-        return [
-          "Denmark",
-          "Norway",
-          "Sweden",
-          "Germany",
-          "France",
-          "Spain",
-          "Greece",
-          "UK",
-        ];
       case "CounterPart":
         return [
           "Total Energy",

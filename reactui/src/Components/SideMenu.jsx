@@ -4,7 +4,7 @@ import Paper from "@mui/material/Paper";
 import MenuList from "@mui/material/MenuList";
 import ListItemText from "@mui/material/ListItemText";
 import ListItemIcon from "@mui/material/ListItemIcon";
-import VisibilityIcon from "@mui/icons-material/Visibility";
+import HomeIcon from "@mui/icons-material/Home";
 import AddIcon from "@mui/icons-material/Add";
 import { Link } from "react-router-dom";
 import AssetFormDialog from "./AssetFormDialog";
@@ -24,18 +24,18 @@ const SideMenu = () => {
     <Paper
       sx={{
         height: "100vh",
-        backgroundColor: "#f5f5f5",
-        border: "1px solid #d3d3d3",
+        backgroundColor: "#990011FF",
+        borderRadius: "0px",
+        maxWidth: "350px",
       }}
     >
       <MenuList>
         <h2
           style={{
             fontWeight: "bold",
-            justifyContent: "center",
             alignItems: "center",
             display: "flex",
-            color: "black",
+            color: "white",
             marginRight: "20px",
             marginBottom: "25px",
             marginTop: "20px",
@@ -51,11 +51,11 @@ const SideMenu = () => {
           Dashboard
         </h2>
 
-        <ListItem component={Link} to="/" sx={{ marginTop: "10px" }}>
+        <ListItem component={Link} to="/home" sx={{ marginTop: "10px" }}>
           <ListItemIcon>
-            <VisibilityIcon />
+            <HomeIcon />
           </ListItemIcon>
-          <ListItemText>View</ListItemText>
+          <ListItemText sx={{ color: "white" }}>Home</ListItemText>
         </ListItem>
 
         <Divider />

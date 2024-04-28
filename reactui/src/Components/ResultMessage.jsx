@@ -9,7 +9,7 @@ const ResultMessage = ({ message, severity, onClose }) => {
     const timer = setTimeout(() => {
       setShowMessage(false);
       onClose(); // Call onClose after message display duration
-    }, 3000);
+    }, 2000);
 
     return () => clearTimeout(timer);
   }, [onClose]);
