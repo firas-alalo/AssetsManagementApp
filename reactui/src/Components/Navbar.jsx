@@ -15,7 +15,7 @@ const Navbar = () => {
           <CategoryIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             <Link
-              to="/"
+              to="/home"
               style={{
                 textDecoration: "none",
                 color: "white",
@@ -25,10 +25,10 @@ const Navbar = () => {
               Assets Management App
             </Link>
           </Typography>
-          <Button href="/" sx={{ color: "white", weight: "30" }}>
-            Home
+          <Button sx={{ color: "white" }}>About</Button>
+          <Button href="/login" sx={{ color: "white" }}>
+            Login
           </Button>
-          <Button sx={{ color: "white" }}>Login</Button>
         </Toolbar>
       </AppBar>
     </Box>

@@ -155,8 +155,9 @@ const AssetFormDialog = () => {
 
   return (
     <>
-      {/* the problem of letter A is because it is located after this ListItemText componnt */}
-      <ListItemText onClick={handleClickOpen}>Add</ListItemText>
+      <ListItemText onClick={handleClickOpen} sx={{ color: "white" }}>
+        Add
+      </ListItemText>
       <Dialog
         fullScreen={fullScreen}
         open={open}
